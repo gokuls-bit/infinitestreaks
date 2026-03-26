@@ -1,0 +1,115 @@
+{
+  "component": {
+    "glass-card": {
+      "background": {
+        "value": "{color.surface.dark.glass}",
+        "description": "Glassmorphism card fill. ONLY use over gradient or image backgrounds. Never nest glass inside glass."
+      },
+      "backdropFilter": {
+        "value": "blur(20px)",
+        "description": "Frosted glass blur amount. 20px provides readability while maintaining visual depth."
+      },
+      "border": {
+        "value": "1px solid {color.surface.dark.glassBorder}",
+        "description": "Subtle edge definition. 10% white opacity prevents the card from appearing to float without anchor."
+      },
+      "borderRadius": {
+        "value": "{radius.md}",
+        "description": "16px radius for glassmorphism cards."
+      },
+      "padding": {
+        "value": "{spacing.scale.lg}",
+        "description": "20px internal padding for comfortable content spacing."
+      }
+    },
+    "button": {
+      "primary": {
+        "background": { "value": "{color.brand.purple}", "description": "Primary CTA fill" },
+        "foreground": { "value": "#FFFFFF", "description": "Always white on brand purple" },
+        "height": { "value": "48px", "description": "Comfortable touch target" },
+        "borderRadius": { "value": "{radius.sm}", "description": "8px for buttons" },
+        "paddingHorizontal": { "value": "{spacing.scale.xl}", "description": "24px side padding" },
+        "hover": { "value": "#8B6EB7", "description": "+10% lightness on hover" },
+        "pressed": { "value": "#6B4E97", "description": "-10% lightness on press" },
+        "disabled": { "value": "rgba(123, 94, 167, 0.38)", "description": "38% opacity when disabled" },
+        "transitionHover": { "value": "150ms {animation.easing.smooth}", "description": "Fast hover feedback" },
+        "transitionPress": { "value": "300ms {animation.easing.spring}", "description": "Spring press feedback" }
+      },
+      "ghost": {
+        "background": { "value": "transparent", "description": "No fill — text-only button" },
+        "foreground": { "value": "{color.brand.purple}", "description": "Brand purple text" },
+        "border": { "value": "1px solid {color.brand.purple}", "description": "Outlined variant" },
+        "hover": { "value": "rgba(123, 94, 167, 0.08)", "description": "Subtle fill on hover" }
+      },
+      "danger": {
+        "background": { "value": "{color.semantic.error}", "description": "Destructive action fill" },
+        "foreground": { "value": "#FFFFFF" }
+      },
+      "success": {
+        "background": { "value": "{color.semantic.success}", "description": "Positive action fill" },
+        "foreground": { "value": "#FFFFFF" }
+      }
+    },
+    "habit-card": {
+      "background": { "value": "{color.surface.dark.card}", "description": "Card surface" },
+      "borderRadius": { "value": "{radius.md}", "description": "16px" },
+      "padding": { "value": "{spacing.scale.md}", "description": "16px all sides" },
+      "height": { "value": "80px", "description": "Comfortable card height with name + streak info" },
+      "states": {
+        "default": { "borderLeft": "none", "description": "No border accent in default state" },
+        "completing": { "borderLeft": "3px solid {color.streak.active}", "description": "Orange accent while swipe-to-complete in progress" },
+        "completed": { "borderLeft": "3px solid {color.semantic.success}", "background": "rgba(52, 211, 153, 0.08)", "description": "Green accent + subtle green wash when done" },
+        "skipped": { "borderLeft": "3px solid {color.streak.dead}", "opacity": "0.6", "description": "Gray accent + reduced opacity for skipped" }
+      }
+    },
+    "streak-counter": {
+      "fontStyle": { "value": "{typography.scale.streakNumber}", "description": "64px monospace for stability during roll animation" },
+      "color": {
+        "range-0-7": { "value": "{color.brand.electric}", "description": "Days 0–7: Electric blue — building momentum" },
+        "range-7-30": { "value": "{color.brand.purple}", "description": "Days 7–30: Brand purple — committed" },
+        "range-30-90": { "value": "{color.streak.gold}", "description": "Days 30–90: Gold — established" },
+        "range-90-plus": { "value": "{color.streak.prismatic}", "description": "Days 90+: Prismatic gradient — legendary" }
+      },
+      "glow": { "value": "{elevation.glow.streakActive}", "description": "Orange glow behind counter" },
+      "animation": {
+        "increment": { "value": "spring(stiffness=120, damping=14)", "description": "Gentle spring for number roll-up" },
+        "celebration": { "value": "{animation.duration.celebration}", "description": "1200ms full milestone animation" }
+      }
+    },
+    "progress-ring": {
+      "size": { "value": "48px", "description": "Standard progress ring diameter" },
+      "strokeWidth": { "value": "4px", "description": "Ring thickness" },
+      "trackColor": { "value": "rgba(255, 255, 255, 0.08)", "description": "Unfilled ring track" },
+      "fillGradient": {
+        "start": { "value": "{color.brand.purple}" },
+        "end": { "value": "{color.brand.neon}" },
+        "description": "Purple-to-neon gradient for filled progress"
+      },
+      "animation": { "value": "1000ms {animation.easing.decelerate}", "description": "Smooth fill animation on load" }
+    },
+    "snackbar": {
+      "success": { "accent": "{color.semantic.success}", "icon": "check-circle" },
+      "warning": { "accent": "{color.semantic.warning}", "icon": "alert-triangle" },
+      "error": { "accent": "{color.semantic.error}", "icon": "x-circle" },
+      "info": { "accent": "{color.semantic.info}", "icon": "info" },
+      "background": { "value": "{color.surface.dark.card}" },
+      "borderRadius": { "value": "{radius.sm}" },
+      "animation": {
+        "enter": { "value": "300ms {animation.easing.decelerate}", "description": "Slide up from bottom" },
+        "exit": { "value": "200ms {animation.easing.accelerate}", "description": "Slide down to dismiss" }
+      }
+    },
+    "bottom-sheet": {
+      "background": { "value": "{color.surface.dark.raised}" },
+      "borderRadius": { "value": "{radius.lg} {radius.lg} 0 0", "description": "24px top corners only" },
+      "dragHandle": {
+        "width": "40px",
+        "height": "4px",
+        "color": "rgba(255, 255, 255, 0.20)",
+        "borderRadius": "{radius.full}",
+        "description": "Pill-shaped drag indicator centered at top"
+      },
+      "scrim": { "value": "rgba(0, 0, 0, 0.50)", "description": "50% black overlay behind sheet" }
+    }
+  }
+}

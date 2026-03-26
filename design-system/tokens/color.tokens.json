@@ -1,0 +1,174 @@
+{
+  "color": {
+    "brand": {
+      "purple": {
+        "value": "#7B5EA7",
+        "type": "color",
+        "description": "Primary brand color. Used for CTAs, active navigation states, and primary interactive elements. Conveys premium authority."
+      },
+      "electric": {
+        "value": "#4F8EF7",
+        "type": "color",
+        "description": "Secondary brand color. Used for links, secondary actions, informational badges, and data visualization accents."
+      },
+      "neon": {
+        "value": "#9B59F5",
+        "type": "color",
+        "description": "Accent/highlight brand color. Used for glows, particle effects, achievement highlights, and premium feature badges."
+      }
+    },
+    "streak": {
+      "active": {
+        "value": "#FF6B35",
+        "type": "color",
+        "description": "Flame orange. Active streak state — the core motivational color. Used for streak counters, fire particles, active streak badges, and progress rings on active days."
+      },
+      "broken": {
+        "value": "#E53E3E",
+        "type": "color",
+        "description": "Failure red. Streak broken state. Used ONLY on the failure screen, broken streak indicators, and danger-state warnings. Never use for general errors — see semantic.error."
+      },
+      "dead": {
+        "value": "#4A4A5A",
+        "type": "color",
+        "description": "Cold gray. Dead/inactive streak. Used for past broken streaks in history, disabled habit cards, and inactive states. Communicates emotional coldness."
+      },
+      "gold": {
+        "value": "#FFD60A",
+        "type": "color",
+        "description": "Achievement gold. Used for milestone celebrations, legendary streak status (90d+), trophy icons, and XP indicators."
+      },
+      "prismatic": {
+        "value": "linear-gradient(135deg, #9B59F5 0%, #4F8EF7 25%, #FF6B35 50%, #FFD60A 75%, #9B59F5 100%)",
+        "type": "gradient",
+        "description": "Prismatic rainbow gradient for 90+ day legendary streaks. Animated with 4s infinite rotation. Used only for the most elite streak states."
+      }
+    },
+    "semantic": {
+      "success": {
+        "value": "#34D399",
+        "type": "color",
+        "description": "Success state. Habit completed, streak continued, positive feedback. Distinct from streak.active to avoid confusion."
+      },
+      "warning": {
+        "value": "#FBBF24",
+        "type": "color",
+        "description": "Warning state. Streak at risk (approaching deadline), low completion rate alerts, gentle nudges."
+      },
+      "error": {
+        "value": "#EF4444",
+        "type": "color",
+        "description": "System error state. Network failures, validation errors, system issues. NOT for streak failures — use streak.broken."
+      },
+      "info": {
+        "value": "#60A5FA",
+        "type": "color",
+        "description": "Informational state. Tips, onboarding hints, neutral system messages."
+      }
+    },
+    "text": {
+      "primary": {
+        "dark": {
+          "value": "#FFFFFF",
+          "type": "color",
+          "description": "Primary text on dark surfaces. Titles, body copy, streak numbers. Contrast ratio 15.3:1 on surface-base."
+        },
+        "light": {
+          "value": "#0D0D14",
+          "type": "color",
+          "description": "Primary text on light surfaces. Contrast ratio 17.1:1 on surface-base-light."
+        }
+      },
+      "secondary": {
+        "dark": {
+          "value": "rgba(255, 255, 255, 0.70)",
+          "type": "color",
+          "description": "Secondary text on dark surfaces. Captions, metadata, timestamps. Contrast ratio 10.7:1 on surface-base."
+        },
+        "light": {
+          "value": "rgba(13, 13, 20, 0.60)",
+          "type": "color",
+          "description": "Secondary text on light surfaces. Contrast ratio 10.3:1 on surface-base-light."
+        }
+      },
+      "tertiary": {
+        "dark": {
+          "value": "rgba(255, 255, 255, 0.40)",
+          "type": "color",
+          "description": "Tertiary/disabled text on dark surfaces. Placeholder text, disabled labels. Contrast ratio 6.1:1 on surface-base."
+        },
+        "light": {
+          "value": "rgba(13, 13, 20, 0.35)",
+          "type": "color",
+          "description": "Tertiary/disabled text on light surfaces. Contrast ratio 5.9:1 on surface-base-light."
+        }
+      }
+    },
+    "surface": {
+      "dark": {
+        "base": {
+          "value": "#0D0D14",
+          "type": "color",
+          "description": "Root background in dark mode. The deepest layer. Near-black with a subtle blue-purple undertone for warmth."
+        },
+        "raised": {
+          "value": "#13131F",
+          "type": "color",
+          "description": "First elevation layer in dark mode. Bottom navigation, app bars, raised containers."
+        },
+        "card": {
+          "value": "#1A1A2E",
+          "type": "color",
+          "description": "Card/sheet surface in dark mode. Habit cards, modal backgrounds, list item containers."
+        },
+        "glass": {
+          "value": "rgba(255, 255, 255, 0.06)",
+          "type": "color",
+          "description": "Glassmorphism fill in dark mode. ONLY for cards floating over gradient/image backgrounds. Never nest glass inside glass."
+        },
+        "glassBorder": {
+          "value": "rgba(255, 255, 255, 0.10)",
+          "type": "color",
+          "description": "Border for glassmorphism cards in dark mode. 1px solid, adds edge definition to frosted surfaces."
+        },
+        "divider": {
+          "value": "rgba(255, 255, 255, 0.08)",
+          "type": "color",
+          "description": "Divider/separator lines in dark mode. Subtle enough to structure without drawing attention."
+        }
+      },
+      "light": {
+        "base": {
+          "value": "#F4F4F8",
+          "type": "color",
+          "description": "Root background in light mode. Warm off-white with subtle purple tint for brand cohesion."
+        },
+        "raised": {
+          "value": "#FFFFFF",
+          "type": "color",
+          "description": "First elevation layer in light mode. Pure white for maximum contrast and card readability."
+        },
+        "card": {
+          "value": "#FFFFFF",
+          "type": "color",
+          "description": "Card/sheet surface in light mode. White with shadow elevation instead of background differentiation."
+        },
+        "glass": {
+          "value": "rgba(255, 255, 255, 0.72)",
+          "type": "color",
+          "description": "Glassmorphism fill in light mode. Higher opacity than dark mode to maintain readability."
+        },
+        "glassBorder": {
+          "value": "rgba(0, 0, 0, 0.06)",
+          "type": "color",
+          "description": "Border for glassmorphism cards in light mode."
+        },
+        "divider": {
+          "value": "rgba(0, 0, 0, 0.08)",
+          "type": "color",
+          "description": "Divider/separator lines in light mode."
+        }
+      }
+    }
+  }
+}

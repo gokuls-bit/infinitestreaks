@@ -1,0 +1,143 @@
+{
+  "spacing": {
+    "unit": {
+      "value": 4,
+      "type": "dimension",
+      "unit": "px",
+      "description": "Base spacing unit. All spacing values are multiples of 4px to maintain vertical rhythm and alignment consistency."
+    },
+    "scale": {
+      "xxs": {
+        "value": 4,
+        "type": "dimension",
+        "unit": "px",
+        "description": "4px — Minimum spacing. Used for inline icon-to-text gaps, tight badge padding, dense list separators."
+      },
+      "xs": {
+        "value": 8,
+        "type": "dimension",
+        "unit": "px",
+        "description": "8px — Tight spacing. Used for spacing between related elements within a component (e.g., icon and label in a chip)."
+      },
+      "sm": {
+        "value": 12,
+        "type": "dimension",
+        "unit": "px",
+        "description": "12px — Small spacing. Card internal padding (top/bottom), small gaps between stacked elements."
+      },
+      "md": {
+        "value": 16,
+        "type": "dimension",
+        "unit": "px",
+        "description": "16px — Default spacing. Screen horizontal margins, card horizontal padding, standard gap between list items."
+      },
+      "lg": {
+        "value": 20,
+        "type": "dimension",
+        "unit": "px",
+        "description": "20px — Comfortable spacing. Padding inside larger cards, gap between card groups."
+      },
+      "xl": {
+        "value": 24,
+        "type": "dimension",
+        "unit": "px",
+        "description": "24px — Generous spacing. Section separators, header bottom padding, modal internal padding."
+      },
+      "2xl": {
+        "value": 32,
+        "type": "dimension",
+        "unit": "px",
+        "description": "32px — Section break. Space between major content sections on a screen."
+      },
+      "3xl": {
+        "value": 40,
+        "type": "dimension",
+        "unit": "px",
+        "description": "40px — Large section break. Top padding after a header, bottom padding before fixed bottom bars."
+      },
+      "4xl": {
+        "value": 48,
+        "type": "dimension",
+        "unit": "px",
+        "description": "48px — Component height standard. Touch target minimum height, button height, nav bar height."
+      },
+      "5xl": {
+        "value": 64,
+        "type": "dimension",
+        "unit": "px",
+        "description": "64px — Maximum spacing. Only for hero section top padding, onboarding illustration spacing, empty state breathing room."
+      }
+    }
+  },
+  "radius": {
+    "none": {
+      "value": 0,
+      "type": "dimension",
+      "unit": "px",
+      "description": "No border radius. Used for full-width dividers and flat elements."
+    },
+    "sm": {
+      "value": 8,
+      "type": "dimension",
+      "unit": "px",
+      "description": "Small radius. Buttons, text input fields, chips, inline tags, small action containers."
+    },
+    "md": {
+      "value": 16,
+      "type": "dimension",
+      "unit": "px",
+      "description": "Medium radius. Cards, modals, bottom sheets, notification banners. Default container radius."
+    },
+    "lg": {
+      "value": 24,
+      "type": "dimension",
+      "unit": "px",
+      "description": "Large radius. Featured/hero cards, floating action containers, image cards, prominent CTA buttons."
+    },
+    "full": {
+      "value": 9999,
+      "type": "dimension",
+      "unit": "px",
+      "description": "Pill/circle shape. Avatars, circular icon buttons, pill-shaped badges, toggle tracks, status dots."
+    }
+  },
+  "elevation": {
+    "none": {
+      "value": "none",
+      "type": "shadow",
+      "description": "No elevation. Flat elements on their parent surface."
+    },
+    "low": {
+      "value": "0px 2px 8px rgba(0, 0, 0, 0.15)",
+      "type": "shadow",
+      "description": "Subtle lift. Cards resting on a surface in light mode. In dark mode, use surface color differentiation instead."
+    },
+    "medium": {
+      "value": "0px 4px 16px rgba(0, 0, 0, 0.20)",
+      "type": "shadow",
+      "description": "Clear elevation. Dropdown menus, floating action buttons, popovers."
+    },
+    "high": {
+      "value": "0px 8px 32px rgba(0, 0, 0, 0.30)",
+      "type": "shadow",
+      "description": "Strong elevation. Modals, full-screen overlays, drawer sheets."
+    },
+    "glow": {
+      "streakActive": {
+        "value": "0px 0px 24px rgba(255, 107, 53, 0.40)",
+        "type": "shadow",
+        "description": "Orange glow for active streak elements. Applied to streak counter and fire icon on the dashboard."
+      },
+      "brandPurple": {
+        "value": "0px 0px 20px rgba(123, 94, 167, 0.35)",
+        "type": "shadow",
+        "description": "Purple glow for primary CTAs and focused brand elements."
+      },
+      "danger": {
+        "value": "0px 0px 24px rgba(229, 62, 62, 0.40)",
+        "type": "shadow",
+        "description": "Red glow for streak failure screen elements."
+      }
+    }
+  }
+}

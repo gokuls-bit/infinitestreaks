@@ -1,0 +1,117 @@
+{
+  "animation": {
+    "easing": {
+      "spring": {
+        "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        "type": "cubicBezier",
+        "description": "Spring overshoot easing. Used for button press release, card appearing, streak counter increment, and all elements that should feel physically responsive. The 1.275 overshoot creates the 'bouncy' feel."
+      },
+      "smooth": {
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "type": "cubicBezier",
+        "description": "Standard Material smooth easing. Used for page transitions, opacity fades, expanding/collapsing sections, and any motion that should feel effortless."
+      },
+      "decelerate": {
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "type": "cubicBezier",
+        "description": "Deceleration curve. Used for elements entering the viewport — sliding in from off-screen, notifications appearing, bottom sheet opening."
+      },
+      "accelerate": {
+        "value": "cubic-bezier(0.4, 0, 1, 1)",
+        "type": "cubicBezier",
+        "description": "Acceleration curve. Used for elements leaving the viewport — swiping off, dismissing, closing bottom sheets."
+      },
+      "sharp": {
+        "value": "cubic-bezier(0.4, 0, 0.6, 1)",
+        "type": "cubicBezier",
+        "description": "Sharp easing for quick state changes. Toggle switches, checkbox checks, radio selections. Fast and decisive."
+      }
+    },
+    "duration": {
+      "instant": {
+        "value": 100,
+        "type": "duration",
+        "unit": "ms",
+        "description": "100ms — Near-instant feedback. Checkbox fill, toggle state change, button color on press. Below human perception threshold for 'delay'."
+      },
+      "fast": {
+        "value": 150,
+        "type": "duration",
+        "unit": "ms",
+        "description": "150ms — Quick transition. Hover state changes, icon swaps, ripple trigger. Default for all interactive hover feedback."
+      },
+      "normal": {
+        "value": 300,
+        "type": "duration",
+        "unit": "ms",
+        "description": "300ms — Standard transition. Screen enter/exit, card expand/collapse, press feedback. Default for most UI transitions."
+      },
+      "slow": {
+        "value": 500,
+        "type": "duration",
+        "unit": "ms",
+        "description": "500ms — Deliberate motion. Elaborate celebrations, streak counter roll animation, page cross-fade transitions."
+      },
+      "dramatic": {
+        "value": 800,
+        "type": "duration",
+        "unit": "ms",
+        "description": "800ms — Statement motion. Streak failure shatter effect, confetti explosion, milestone achievement reveal. Used sparingly for emotional impact."
+      },
+      "celebration": {
+        "value": 1200,
+        "type": "duration",
+        "unit": "ms",
+        "description": "1200ms — Full celebration sequence. Complete particle animation cycle, Lottie milestone animation duration."
+      }
+    },
+    "spring": {
+      "default": {
+        "stiffness": { "value": 200, "type": "number" },
+        "damping": { "value": 20, "type": "number" },
+        "mass": { "value": 1, "type": "number" },
+        "description": "Default spring config for Compose/React Native Reanimated. Balanced bounce for cards, buttons, and standard interactive elements."
+      },
+      "snappy": {
+        "stiffness": { "value": 400, "type": "number" },
+        "damping": { "value": 30, "type": "number" },
+        "mass": { "value": 1, "type": "number" },
+        "description": "Snappy spring for quick interactions. Toggle switches, swipe-to-complete snap back, gesture release."
+      },
+      "gentle": {
+        "stiffness": { "value": 120, "type": "number" },
+        "damping": { "value": 14, "type": "number" },
+        "mass": { "value": 1, "type": "number" },
+        "description": "Gentle spring for hero animations. Streak counter entrance, onboarding illustration, modal appearing. More bounce, slower settle."
+      },
+      "bouncy": {
+        "stiffness": { "value": 150, "type": "number" },
+        "damping": { "value": 10, "type": "number" },
+        "mass": { "value": 1, "type": "number" },
+        "description": "Maximum bounce. Confetti particles, celebration effects, restart button animation. Playful and expressive."
+      }
+    },
+    "haptic": {
+      "confirm": {
+        "value": "CONFIRM",
+        "type": "hapticType",
+        "description": "Positive confirmation haptic. Habit completion, streak continued, successful action."
+      },
+      "reject": {
+        "value": "REJECT",
+        "type": "hapticType",
+        "description": "Rejection haptic. Streak broken, failed validation, destructive action confirmation."
+      },
+      "tick": {
+        "value": "TICK",
+        "type": "hapticType",
+        "description": "Light tick haptic. Scrolling through picker wheels, dragging items, incrementing steppers."
+      },
+      "heavyClick": {
+        "value": "HEAVY_CLICK",
+        "type": "hapticType",
+        "description": "Heavy impact haptic. Drag-to-reorder lift, long-press context menu open, dramatic button presses."
+      }
+    }
+  }
+}

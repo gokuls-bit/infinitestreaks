@@ -1,0 +1,97 @@
+{
+  "typography": {
+    "fontFamily": {
+      "base": {
+        "value": "'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif",
+        "type": "fontFamily",
+        "description": "Primary typeface. Inter for cross-platform, SF Pro on iOS. Used for all body, heading, and UI text."
+      },
+      "display": {
+        "value": "'Syne', 'Inter', sans-serif",
+        "type": "fontFamily",
+        "description": "Display typeface for hero numbers and app branding. Syne's geometric forms reinforce the tech-premium aesthetic."
+      },
+      "mono": {
+        "value": "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace",
+        "type": "fontFamily",
+        "description": "Monospace for streak counters, stats numbers, and data displays. Fixed-width prevents layout shifts during counter animations."
+      }
+    },
+    "scale": {
+      "display": {
+        "fontSize": { "value": 48, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 52, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 700, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.display}", "type": "fontFamily" },
+        "letterSpacing": { "value": -1.5, "type": "dimension", "unit": "px" },
+        "description": "Streak counter display. The single most important number on screen. Used for the hero streak count on the dashboard. Maximum 5 digits before scaling down."
+      },
+      "heading1": {
+        "fontSize": { "value": 28, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 34, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 600, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": -0.5, "type": "dimension", "unit": "px" },
+        "description": "Screen titles. One per screen maximum. Examples: 'Today's Habits', 'Your Stats', 'Profile'."
+      },
+      "heading2": {
+        "fontSize": { "value": 22, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 28, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 600, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": -0.25, "type": "dimension", "unit": "px" },
+        "description": "Section titles within screens. Habit category headers, stats section titles, settings groups."
+      },
+      "heading3": {
+        "fontSize": { "value": 18, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 24, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 600, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": 0, "type": "dimension", "unit": "px" },
+        "description": "Sub-section titles. Card titles, dialog headings, inline section titles."
+      },
+      "body": {
+        "fontSize": { "value": 16, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 24, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 400, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": 0, "type": "dimension", "unit": "px" },
+        "description": "Primary body text. Descriptions, onboarding copy, settings explanations, dialog content."
+      },
+      "bodyMedium": {
+        "fontSize": { "value": 16, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 24, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 500, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": 0, "type": "dimension", "unit": "px" },
+        "description": "Emphasized body text. Habit names in cards, selected states, button labels."
+      },
+      "caption": {
+        "fontSize": { "value": 13, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 18, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 400, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": 0.1, "type": "dimension", "unit": "px" },
+        "description": "Secondary information. Timestamps, metadata, helper text, streak 'X days' labels beneath counters."
+      },
+      "label": {
+        "fontSize": { "value": 11, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 14, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 500, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.base}", "type": "fontFamily" },
+        "letterSpacing": { "value": 1.2, "type": "dimension", "unit": "px" },
+        "textTransform": { "value": "uppercase", "type": "textTransform" },
+        "description": "Uppercase micro-labels. Tab bar labels, badge text, category tags, stat labels. Always uppercase with wide tracking."
+      },
+      "streakNumber": {
+        "fontSize": { "value": 64, "type": "dimension", "unit": "px" },
+        "lineHeight": { "value": 68, "type": "dimension", "unit": "px" },
+        "fontWeight": { "value": 700, "type": "fontWeight" },
+        "fontFamily": { "value": "{typography.fontFamily.mono}", "type": "fontFamily" },
+        "letterSpacing": { "value": -2, "type": "dimension", "unit": "px" },
+        "fontVariantNumeric": { "value": "tabular-nums", "type": "fontVariant" },
+        "description": "Large streak number variant for hero displays. Uses monospace for stable width during roll animations. tabular-nums ensures digits don't shift."
+      }
+    }
+  }
+}
