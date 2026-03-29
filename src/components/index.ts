@@ -1,12 +1,23 @@
 /**
- * Aurora Design System — Component Barrel Export
- *
- * import { GlassCard, ISButton, StreakCounter, HabitCard, ProgressRing } from '@/components';
+ * InfiniteStreaks — Component Barrel Export
+ * Atomic Design Architecture
  */
 
-export { GlassCard } from './GlassCard';
-export { ISButton } from './ISButton';
-export { StreakCounter } from './StreakCounter';
-export { ProgressRing } from './ProgressRing';
-export { HabitCard } from './HabitCard';
-export type { HabitCardState } from './HabitCard';
+// --- Atoms ---
+export { ProgressRing } from './atoms/ProgressRing';
+export { StreakBadge } from './atoms/StreakBadge';
+export { HabitColorDot } from './atoms/HabitColorDot';
+export { PenaltyBadge } from './atoms/PenaltyBadge';
+export { ISButton } from './atoms/ISButton';
+export { GlassCard } from './atoms/GlassCard';
+
+// --- Molecules ---
+export { HabitCard } from './molecules/HabitCard';
+export { StreakHero } from './molecules/StreakHero';
+export { StatCard } from './molecules/StatCard';
+export { PunishmentModal } from './molecules/PunishmentModal';
+
+// --- Organisms ---
+export { HabitList } from './organisms/HabitList';
+export { BottomTabBar } from './organisms/BottomTabBar';
+export { OnboardingFlow } from './organisms/OnboardingFlow';

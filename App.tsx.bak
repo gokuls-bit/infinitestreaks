@@ -1,0 +1,112 @@
+import React, { useState } from 'react';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { ThemeProvider, useTheme } from './src/theme';
+import {
+  StreakHero,
+  HabitList,
+  BottomTabBar,
+  OnboardingFlow,
+  PunishmentModal,
+  ISButton
+} from './src/components';
+import { HabitType } from './src/types';
+
+// Mock Data
+const MOCK_HABITS: HabitType[] = [
+  {
+    id: '1',
+    name: 'Morning Meditation',
+    emoji: '🧘',
+    color: '#7B5EA7',
+    streakDays: 42,
+    progress: 0.8,
+    weeklyCompletion: [true, true, true, false, true, true, true],
+    state: 'default',
+  },
+  {
+    id: '2',
+    name: 'Hard Coding',
+    emoji: '💻',
+    color: '#4F8EF7',
+    streakDays: 121,
+    progress: 1.0,
+    weeklyCompletion: [true, true, true, true, true, true, true],
+    state: 'completed',
+  },
+  {
+    id: '3',
+    name: 'Evening Run',
+    emoji: '🏃',
+    color: '#FF6B35',
+    streakDays: 3,
+    progress: 0,
+    weeklyCompletion: [false, false, true, false, false, false, false],
+    state: 'default',
+  },
+];
+
+function Dashboard() {
+  const theme = useTheme();
+  const [showFailure, setShowFailure] = useState(false);
+  const [activeTab, setActiveTab] = useState<'home' | 'stats' | 'add' | 'notifications' | 'profile'>('home');
+
+  return (
+    <View style={[styles.flex, { backgroundColor: theme.surfaces.base }]}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <StreakHero currentStreak={121} />
+        
+        <View style={{ paddingHorizontal: 16 }}>
+          <Text style={[theme.typography.heading2, { color: theme.text.primary, marginBottom: 16 }]}>
+            My Habits
+          </Text>
+          <HabitList
+            habits={MOCK_HABITS}
+            onComplete={(id) => console.log('Complete:', id)}
+            onPressHabit={(h) => console.log('Press:', h.name)}
+          />
+          
+          <ISButton
+            title="Simulate Failure"
+            variant="ghost"
+            style={{ marginTop: 20 }}
+            onPress={() => setShowFailure(true)}
+          />
+        </View>
+      </ScrollView>
+
+      <PunishmentModal
+        visible={showFailure}
+        previousStreak={45}
+        habitName="Journaling"
+        penaltyPoints={15}
+        onRestart={() => setShowFailure(false)}
+        onViewHistory={() => setShowFailure(false)}
+      />
+
+      <BottomTabBar activeTab={activeTab} onTabPress={setActiveTab} />
+    </View>
+  );
+}
+
+export default function App() {
+  const [onboarded, setOnboarded] = useState(false);
+
+  return (
+    <SafeAreaProvider>
+      <ThemeProvider mode="dark">
+        {onboarded ? (
+          <Dashboard />
+        ) : (
+          <OnboardingFlow onFinish={() => setOnboarded(true)} />
+        )}
+      </ThemeProvider>
+    </SafeAreaProvider>
+  );
+}
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+});

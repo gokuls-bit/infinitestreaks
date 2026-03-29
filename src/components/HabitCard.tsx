@@ -1,228 +1,120 @@
-/**
- * InfiniteStreaks — Aurora Design System
- * HabitCard Component
- *
- * Card representing a single habit with states:
- * Default | Completing | Completed | Skipped
- *
- * Features:
- * - Left border accent by state
- * - Emoji + name + streak counter + progress ring
- * - Spring animation on state change
- * - Haptic feedback on tap
- */
-import React, { useCallback } from 'react';
-import {
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-  ViewStyle,
-} from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  withTiming,
-  interpolate,
-} from 'react-native-reanimated';
-import { useTheme } from '../theme/ThemeProvider';
-import { ProgressRing } from './ProgressRing';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import Animated, { FadeInUp, Layout, SlideInRight } from 'react-native-reanimated';
+import ConfettiCannon from 'react-native-confetti-cannon';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useHabits } from '../context/HabitContext';
+import { Habit } from '../types';
+import { BrandColors, StreakColors, DarkTextColors, getStreakColor } from '../theme/colors';
 
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const HabitCard: React.FC<{ habit: Habit; index: number }> = ({ habit, index }) => {
+  const { completeHabit } = useHabits();
+  const [showConfetti, setShowConfetti] = useState(false);
+  const streakColor = getStreakColor(habit.currentStreak);
 
-export type HabitCardState = 'default' | 'completing' | 'completed' | 'skipped';
-
-interface HabitCardProps {
-  /** Habit display name */
-  name: string;
-  /** Emoji icon */
-  emoji: string;
-  /** Current streak count */
-  streakDays: number;
-  /** Completion progress for today (0–1) */
-  progress: number;
-  /** Card state */
-  state?: HabitCardState;
-  /** "due in X hours" smart timing */
-  dueIn?: string;
-  /** Tap handler */
-  onPress?: () => void;
-  /** Long-press handler (context menu) */
-  onLongPress?: () => void;
-  style?: ViewStyle;
-}
-
-export function HabitCard({
-  name,
-  emoji,
-  streakDays,
-  progress,
-  state = 'default',
-  dueIn,
-  onPress,
-  onLongPress,
-  style,
-}: HabitCardProps) {
-  const theme = useTheme();
-  const pressed = useSharedValue(0);
-
-  const handlePressIn = useCallback(() => {
-    pressed.value = withTiming(1, { duration: theme.duration.fast });
-  }, []);
-
-  const handlePressOut = useCallback(() => {
-    pressed.value = withSpring(0, theme.spring.default);
-  }, []);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: interpolate(pressed.value, [0, 1], [1, 0.97]) },
-    ],
-  }));
-
-  // State-based styling
-  const stateStyles = {
-    default: {
-      borderLeftWidth: 0,
-      borderLeftColor: 'transparent',
-      bgOverlay: 'transparent',
-      opacity: 1,
-    },
-    completing: {
-      borderLeftWidth: 3,
-      borderLeftColor: theme.streak.active,
-      bgOverlay: 'rgba(255, 107, 53, 0.06)',
-      opacity: 1,
-    },
-    completed: {
-      borderLeftWidth: 3,
-      borderLeftColor: theme.semantic.success,
-      bgOverlay: 'rgba(52, 211, 153, 0.08)',
-      opacity: 1,
-    },
-    skipped: {
-      borderLeftWidth: 3,
-      borderLeftColor: theme.streak.dead,
-      bgOverlay: 'transparent',
-      opacity: 0.6,
-    },
+  const handleComplete = async () => {
+    try {
+      const response = await completeHabit(habit._id);
+      if (response && !response.streakBroken) {
+        setShowConfetti(true);
+      } else if (response && response.streakBroken) {
+        // Handle streak broken/penalty UI
+        Alert.alert("Streak Broken 💀", response.message);
+      }
+    } catch (err: any) {
+      if (err.message !== 'STATUS_OFFLINE') {
+        Alert.alert("Error", "Something went wrong while completing the habit");
+      }
+    }
   };
 
-  const stateStyle = stateStyles[state];
-
   return (
-    <AnimatedPressable
-      onPress={onPress}
-      onLongPress={onLongPress}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={[
-        styles.card,
-        animatedStyle,
-        {
-          backgroundColor: theme.surfaces.card,
-          borderRadius: theme.radius.md,
-          borderLeftWidth: stateStyle.borderLeftWidth,
-          borderLeftColor: stateStyle.borderLeftColor,
-          opacity: stateStyle.opacity,
-          padding: theme.spacing.md,
-        },
-        theme.elevation.low,
-        style,
-      ]}
-      accessibilityRole="button"
-      accessibilityLabel={`${name}, ${streakDays} day streak, ${state}`}
+    <Animated.View 
+      entering={FadeInUp.delay(index * 100)} 
+      layout={Layout.springify()} 
+      style={styles.container}
     >
-      {/* State background overlay */}
-      {stateStyle.bgOverlay !== 'transparent' && (
-        <View
-          style={[
-            StyleSheet.absoluteFill,
-            {
-              backgroundColor: stateStyle.bgOverlay,
-              borderRadius: theme.radius.md,
-            },
-          ]}
+      {showConfetti && (
+        <ConfettiCannon 
+          count={50} 
+          origin={{ x: 0, y: 0 }} 
+          fadeOut={true} 
+          onAnimationEnd={() => setShowConfetti(false)} 
         />
       )}
-
-      <View style={styles.content}>
-        {/* Left: Emoji + Info */}
-        <View style={styles.left}>
-          <Text style={styles.emoji}>{emoji}</Text>
-          <View style={[styles.info, { marginLeft: theme.spacing.sm }]}>
-            <Text
-              style={[
-                theme.typography.bodyMedium,
-                { color: theme.text.primary },
-              ]}
-              numberOfLines={1}
-            >
-              {name}
-            </Text>
-            <View style={styles.meta}>
-              <Text style={[
-                theme.typography.caption,
-                { color: theme.text.secondary },
-              ]}>
-                🔥 {streakDays} {streakDays === 1 ? 'day' : 'days'}
-              </Text>
-              {dueIn && (
-                <Text style={[
-                  theme.typography.caption,
-                  { color: theme.text.tertiary, marginLeft: theme.spacing.xs },
-                ]}>
-                  • {dueIn}
-                </Text>
-              )}
-            </View>
-          </View>
-        </View>
-
-        {/* Right: Progress Ring */}
-        <ProgressRing
-          progress={progress}
-          size={40}
-          strokeWidth={3}
-          gradientStart={
-            state === 'completed' ? theme.semantic.success : theme.brand.purple
-          }
-          gradientEnd={
-            state === 'completed' ? theme.semantic.success : theme.brand.neon
-          }
-        />
+      
+      <View style={styles.cardInfo}>
+        <Text style={styles.name}>{habit.name}</Text>
+        <Text style={styles.description} numberOfLines={1}>{habit.description || 'Keeping consistency'}</Text>
       </View>
-    </AnimatedPressable>
+
+      <View style={styles.streakContainer}>
+        <MaterialCommunityIcons 
+          name={habit.currentStreak > 0 ? "fire" : "fire-off"} 
+          size={24} 
+          color={habit.currentStreak > 0 ? StreakColors.active : StreakColors.dead} 
+        />
+        <Text style={[styles.streakText, { color: streakColor }]}>
+          {habit.currentStreak}
+        </Text>
+      </View>
+
+      <TouchableOpacity 
+        onPress={handleComplete} 
+        disabled={habit.lastCompletedDate === new Date().toISOString().split('T')[0]}
+        style={[
+          styles.actionButton,
+          { backgroundColor: habit.currentStreak > 0 ? BrandColors.purple : BrandColors.electric }
+        ]}
+      >
+        <MaterialCommunityIcons name="check" size={20} color={DarkTextColors.primary} />
+      </TouchableOpacity>
+    </Animated.View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  card: {
-    minHeight: 80,
-    overflow: 'hidden',
-  },
-  content: {
+  container: {
+    padding: 16,
+    borderRadius: 20,
+    backgroundColor: '#1E1E2E',
+    marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    zIndex: 1,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 4,
   },
-  left: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    marginRight: 12,
-  },
-  emoji: {
-    fontSize: 28,
-  },
-  info: {
+  cardInfo: {
     flex: 1,
   },
-  meta: {
+  name: {
+    color: DarkTextColors.primary,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  description: {
+    color: DarkTextColors.secondary,
+    fontSize: 14,
+    marginTop: 4,
+  },
+  streakContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 2,
+    marginRight: 16,
+  },
+  streakText: {
+    fontSize: 20,
+    fontWeight: '900',
+    marginLeft: 4,
+  },
+  actionButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
+
+export default HabitCard;
