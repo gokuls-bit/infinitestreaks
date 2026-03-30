@@ -1,28 +1,57 @@
-import React, { useEffect } from 'react';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { AuthProvider, useAuth } from '../src/context/AuthContext';
-import { HabitProvider } from '../src/context/HabitContext';
-import { useOfflineQueue } from '../src/hooks/useOfflineQueue';
-import { setupNotifications } from '../src/utils/notifications';
-import { DarkSurfaces } from '../src/theme/colors';
+import React, { useEffect } from "react";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { View, ActivityIndicator } from "react-native";
+
+import { AuthProvider, useAuth } from "../src/context/AuthContext";
+import { HabitProvider } from "../src/context/HabitContext";
+import { useOfflineQueue } from "../src/hooks/useOfflineQueue";
+import { setupNotifications } from "../src/utils/notifications";
+import { DarkSurfaces } from "../src/theme/colors";
 
 const RootLayoutContent = () => {
   const { user, isLoading } = useAuth();
+
+  // initialize offline queue once
   useOfflineQueue();
 
+  // setup notifications once
   useEffect(() => {
-    setupNotifications();
+    const initNotifications = async () => {
+      try {
+        await setupNotifications();
+      } catch (err) {
+        console.log("Notification setup failed:", err);
+      }
+    };
+
+    initNotifications();
   }, []);
 
-  if (isLoading) return null;
+  // better loading UI instead of returning null
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: DarkSurfaces.base,
+        }}
+      >
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
+  }
 
   return (
-    <Stack screenOptions={{ 
-      headerShown: false, 
-      contentStyle: { backgroundColor: DarkSurfaces.base },
-      animation: 'fade_from_bottom'
-    }}>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: DarkSurfaces.base },
+        animation: "fade_from_bottom",
+      }}
+    >
       {user ? (
         <Stack.Screen name="(tabs)" />
       ) : (
